@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mariela - Desarrolladora JavaScript | Portfolio</title>
+    <meta name="description"
+        content="Portfolio de Mariela, desarrolladora JavaScript especializada en aplicaciones web interactivas con LocalStorage, DOM manipulation y más.">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#1E293B',
+                        'accent': '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-inter bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-secondary">Mariela</h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#inicio"
+                            class="nav-link text-gray-700 hover:text-primary transition-colors duration-200">Inicio</a>
+                        <a href="#sobre-mi"
+                            class="nav-link text-gray-700 hover:text-primary transition-colors duration-200">Sobre
+                            Mí</a>
+                        <a href="#proyectos"
+                            class="nav-link text-gray-700 hover:text-primary transition-colors duration-200">Proyectos</a>
+                        <a href="#habilidades"
+                            class="nav-link text-gray-700 hover:text-primary transition-colors duration-200">Habilidades</a>
+                        <a href="#contacto"
+                            class="nav-link text-gray-700 hover:text-primary transition-colors duration-200">Contacto</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button"
+                        class="mobile-menu-button text-gray-700 hover:text-primary focus:outline-none focus:text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-primary">Inicio</a>
+                <a href="#sobre-mi" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-primary">Sobre
+                    Mí</a>
+                <a href="#proyectos"
+                    class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-primary">Proyectos</a>
+                <a href="#habilidades"
+                    class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-primary">Habilidades</a>
+                <a href="#contacto"
+                    class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-primary">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio"
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <!-- Profile Image Placeholder -->
+                <div class="mb-8">
+                    <div
+                        class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white text-4xl font-bold shadow-xl">
+                        <img src="img/mariela.png" alt="Mariela-perfil">
+                    </div>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-bold text-secondary mb-6 leading-tight">
+                    Hola, soy <span class="text-primary">Mariela</span>
+                </h1>
+
+                <!-- Social Media Icons -->
+                <div class="flex justify-center items-center gap-6 mb-6">
+                    <a href="https://www.twitch.tv/maru_ve" target="_blank" rel="noopener noreferrer" class="transition-transform duration-200 hover:scale-110">
+                        <svg class="w-8 h-8">
+                            <use href="assets/sprite.svg#icon-twitch"></use>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/maru__vel/" target="_blank" rel="noopener noreferrer" class="transition-transform duration-200 hover:scale-110">
+                        <svg class="w-8 h-8">
+                            <use href="assets/sprite.svg#icon-instagram"></use>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/marielavelasquez" target="_blank" rel="noopener noreferrer" class="transition-transform duration-200 hover:scale-110">
+                        <svg class="w-8 h-8">
+                            <use href="assets/sprite.svg#icon-github"></use>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mariela-velasquez-3b6b09206/" target="_blank" rel="noopener noreferrer" class="transition-transform duration-200 hover:scale-110">
+                        <svg class="w-8 h-8">
+                            <use href="assets/sprite.svg#icon-linkedin"></use>
+                        </svg>
+                    </a>
+                </div>
+
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Desarrolladora JavaScript apasionada por crear aplicaciones web interactivas y funcionales
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#proyectos"
+                        class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-600 transition-all duration-200 transform hover:scale-105 shadow-lg">
+                        Ver Mis Proyectos
+                    </a>
+                    <a href="#contacto"
+                        class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-200">
+                        Contactar
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="mt-16">
+                    <div class="animate-bounce">
+                        <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Sobre Mí</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Soy una desarrolladora en crecimiento, curiosa por el mundo del desarrollo web y
+                        especialmente por JavaScript. Mi enfoque está en crear aplicaciones funcionales que resuelvan
+                        problemas reales.
+                    </p>
+
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        A través de mis proyectos, he explorado diferentes conceptos como la manipulación del DOM, el
+                        almacenamiento local, validación de formularios, y programación orientada a objetos con
+                        prototipos.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-code text-primary mr-2"></i>
+                            <span>JavaScript Vanilla</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-paint-brush text-primary mr-2"></i>
+                            <span>CSS, TailwindCSS & Bootstrap</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-database text-primary mr-2"></i>
+                            <span>LocalStorage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center lg:text-right">
+                    <div class="bg-gradient-to-br from-primary to-purple-500 p-8 rounded-2xl text-white shadow-xl">
+                        <h3 class="text-2xl font-bold mb-4">En constante aprendizaje</h3>
+                        <p class="text-blue-100 mb-6">
+                            Cada proyecto es una oportunidad para crecer y aprender nuevas tecnologías y mejores
+                            prácticas.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-3xl font-bold">6</div>
+                                <div class="text-blue-100">Proyectos</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold">100%</div>
+                                <div class="text-blue-100">Dedicación</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Mis Proyectos</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Proyectos desarrollados durante mi formación en JavaScript. aplicando desde validación de formularios hasta programación orientada a objetos.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Email Validator -->
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div
+                        class="project-image bg-gradient-to-br from-pink-500 to-pink-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Validador de Emails</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Sistema de validación de formularios en tiempo real con feedback visual y simulación de
+                            envío de emails.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Validación</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">TailwindCSS</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="16-PROYECTO-EnviarEmail/index.html" target="_blank"
+                                class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Car Search -->
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div
+                        class="project-image bg-gradient-to-br from-blue-500 to-blue-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-car text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Buscador de Autos</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Motor de búsqueda con filtros múltiples: marca, año, precio, puertas, transmisión y color.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Filtros</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Arrays</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="17-PROYECTO-Buscador/index.html" target="_blank"
+                                class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: LocalStorage Tweets -->
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div
+                        class="project-image bg-gradient-to-br from-cyan-500 to-cyan-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-comment text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Gestor de Tweets</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Aplicación tipo Twitter con persistencia en LocalStorage. CRUD completo de mensajes.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">LocalStorage</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">CRUD</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="19-PROYECTO-LocalStorage/index.html" target="_blank"
+                                class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Shopping Cart -->
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div
+                        class="project-image bg-gradient-to-br from-green-500 to-green-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Carrito de Compras</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Sistema completo de carrito de compras con persistencia, cálculo de totales y gestión de
+                            productos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">LocalStorage</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">E-commerce</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="20-PROYECTO-Carrito-LS/index.html" target="_blank"
+                                class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Insurance Calculator -->
+                <div
+                    class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div
+                        class="project-image bg-gradient-to-br from-indigo-500 to-indigo-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-calculator text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Calculadora de Seguros</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Cotizador de seguros con programación orientada a objetos, prototipos y cálculos dinámicos.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Prototypes</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">OOP</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="23-PROYECTO-Prototypes-Seguro/index.html" target="_blank"
+                                class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Gastos Semanal -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div class="project-image bg-gradient-to-br from-emerald-500 to-emerald-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-wallet text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-secondary mb-3">Gestor de Gastos Semanal</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">
+                            Administrador de presupuesto semanal con control de gastos, alertas visuales dinámicas según el saldo restante y programación orientada a objetos con clases ES6.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Clases/OOP</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Bootstrap</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="25-PROYECTO-GastoSemanal/index.html" target="_blank" class="flex-1 bg-primary text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Habilidades Técnicas</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Tecnologías y conceptos que domino a través de mis proyectos
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Frontend Skills -->
+                <div class="skill-category bg-gray-50 p-6 rounded-xl">
+                    <div class="text-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary">Frontend</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>JavaScript Vanilla</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>HTML5 & CSS3</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>TailwindCSS</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Bootstrap</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Responsive Design</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- JavaScript Concepts -->
+                <div class="skill-category bg-gray-50 p-6 rounded-xl">
+                    <div class="text-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-js-square text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary">JavaScript</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>DOM Manipulation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Event Handling</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Prototypes & OOP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Array Methods</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tools & Storage -->
+                <div class="skill-category bg-gray-50 p-6 rounded-xl">
+                    <div class="text-center mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tools text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary">Herramientas</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>LocalStorage</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Form Validation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>CRUD Operations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Git & GitHub</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Claude Code</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>ChatGPT</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Contacto</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    ¿Interesado en trabajar juntos? ¡Me encantaría conocer tu proyecto!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary">Email</h3>
+                                <p class="text-gray-600">maridev.ve@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-linkedin text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary">LinkedIn</h3>
+                                <a href="" target="_blank"><p class="text-gray-600">Ir a Mariela Velasquez</p></a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-github text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-secondary">GitHub</h3>
+                                <a href="https://github.com/marielavelasquez" target="_blank"><p class="text-gray-600">Ir a maridev</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+                            <input type="text" id="nombre" name="nombre"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="Tu nombre">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="tu@email.com">
+                        </div>
+
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                                placeholder="¡Hola Mariela! Me gustaría..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Mariela</h3>
+                <p class="text-gray-300 mb-6">Desarrolladora JavaScript • Creando el futuro una línea de código a la vez
+                </p>
+
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+
+                <div class="border-t border-gray-600 pt-8">
+                    <p class="text-gray-400">
+                        © 2024 Mariela. Todos los derechos reservados. | Hecho con ❤️ y JavaScript
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
