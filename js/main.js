@@ -1,24 +1,24 @@
 // Portfolio Landing Page JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // Navigation functionality
     initNavigation();
-    
+
     // Mobile menu functionality
     initMobileMenu();
-    
+
     // Smooth scrolling for navigation links
     initSmoothScrolling();
-    
+
     // Scroll animations
     initScrollAnimations();
-    
+
     // Contact form functionality
     initContactForm();
-    
+
     // Project cards interactions
     initProjectCards();
-    
+
     // Scroll to top functionality
     initScrollToTop();
 });
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function initNavigation() {
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    
+
     // Update navbar appearance on scroll
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 100) {
             navbar.classList.add('nav-blur');
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
@@ -37,24 +37,24 @@ function initNavigation() {
             navbar.classList.remove('nav-blur');
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         }
-        
+
         // Update active nav link based on scroll position
         updateActiveNavLink();
     });
-    
+
     // Update active navigation link
     function updateActiveNavLink() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPosition = window.scrollY + 100;
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            
+
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 navLinks.forEach(link => link.classList.remove('active'));
-                
+
                 const activeLinks = document.querySelectorAll(`a[href="#${sectionId}"]`);
                 activeLinks.forEach(link => link.classList.add('active'));
             }
@@ -67,11 +67,11 @@ function initMobileMenu() {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    
+
     if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
+        mobileMenuButton.addEventListener('click', function () {
             mobileMenu.classList.toggle('hidden');
-            
+
             // Toggle menu icon
             const icon = mobileMenuButton.querySelector('i');
             if (mobileMenu.classList.contains('hidden')) {
@@ -82,19 +82,19 @@ function initMobileMenu() {
                 icon.classList.add('fa-times');
             }
         });
-        
+
         // Close mobile menu when clicking on a link
         mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 mobileMenu.classList.add('hidden');
                 const icon = mobileMenuButton.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             });
         });
-        
+
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.add('hidden');
                 const icon = mobileMenuButton.querySelector('i');
@@ -108,17 +108,17 @@ function initMobileMenu() {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -134,8 +134,8 @@ function initScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
@@ -143,7 +143,7 @@ function initScrollAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Observe elements for animation
     const elementsToAnimate = document.querySelectorAll('.project-card, .skill-category, h2, .text-center');
     elementsToAnimate.forEach(element => {
@@ -154,17 +154,17 @@ function initScrollAnimations() {
 // Contact form functionality
 function initContactForm() {
     const contactForm = document.querySelector('#contacto form');
-    
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(this);
             const nombre = formData.get('nombre');
             const email = formData.get('email');
             const mensaje = formData.get('mensaje');
-            
+
             // Basic validation
             if (!nombre || !email || !mensaje) {
                 showNotification('Por favor, completa todos los campos.', 'error');
@@ -180,21 +180,27 @@ function initContactForm() {
                 showNotification('Por favor, ingresa un email válido.', 'error');
                 return;
             }
-            
-            // Simulate form submission
+
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
-            
+
             submitButton.textContent = 'Enviando...';
             submitButton.disabled = true;
-            
-            setTimeout(() => {
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+                .then(() => 
+                setTimeout(() => {
                 showNotification('¡Mensaje enviado exitosamente! Te contactaré pronto.', 'success');
                 this.reset();
-                
+
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
-            }, 2000);
+            }, 2000))
+                .catch(error => console.log("Hubo un error al enviar el formulario: ", error));            
         });
     }
 }
@@ -233,11 +239,11 @@ function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
-    
+
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300`;
-    
+
     // Set notification style based on type
     if (type === 'success') {
         notification.classList.add('bg-green-500', 'text-white');
@@ -246,7 +252,7 @@ function showNotification(message, type = 'info') {
     } else {
         notification.classList.add('bg-blue-500', 'text-white');
     }
-    
+
     notification.innerHTML = `
         <div class="flex items-center">
             <span class="flex-1">${message}</span>
@@ -255,14 +261,14 @@ function showNotification(message, type = 'info') {
             </button>
         </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Show notification
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Auto-hide notification
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -275,13 +281,13 @@ function showNotification(message, type = 'info') {
 // Project cards interactions
 function initProjectCards() {
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-8px) scale(1.02)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -294,11 +300,11 @@ function initScrollToTop() {
     scrollTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
     scrollTopButton.className = 'fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 z-50 opacity-0 transform translate-y-4';
     scrollTopButton.style.display = 'none';
-    
+
     document.body.appendChild(scrollTopButton);
-    
+
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 500) {
             scrollTopButton.style.display = 'block';
             setTimeout(() => {
@@ -315,9 +321,9 @@ function initScrollToTop() {
             }, 300);
         }
     });
-    
+
     // Scroll to top functionality
-    scrollTopButton.addEventListener('click', function() {
+    scrollTopButton.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -339,39 +345,39 @@ function debounce(func, wait) {
 }
 
 // Performance optimization for scroll events
-const optimizedScrollHandler = debounce(function() {
+const optimizedScrollHandler = debounce(function () {
     // Any expensive scroll operations can go here
 }, 16);
 
 window.addEventListener('scroll', optimizedScrollHandler);
 
 // Add some interactive features
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Add typing effect to hero title
     const heroTitle = document.querySelector('#inicio h1');
     if (heroTitle) {
         // Store original text
         const originalText = heroTitle.innerHTML;
         heroTitle.innerHTML = '';
-        
+
         // Add typing effect (optional - can be enabled later)
         // typeWriter(heroTitle, originalText, 50);
-        
+
         // For now, just restore the original text
         heroTitle.innerHTML = originalText;
     }
-    
+
     // Add parallax effect to hero section (optional)
     const heroSection = document.querySelector('#inicio');
     if (heroSection) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
             heroSection.style.transform = `translateY(${rate}px)`;
         });
     }
 });
- 
+
 // Typing effect function (optional feature)
 function typeWriter(element, text, speed = 50) {
     let i = 0;
